@@ -10,7 +10,7 @@
     "prepare": "husky",
     "test": "jest",
     "drizzle:generate": "npx drizzle-kit generate --name",
-    "drizzle:push": "npx drizzle-kit push"
+    "drizzle:push": "npx drizzle-kit push --force --config=drizzle.config.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.31.4",
