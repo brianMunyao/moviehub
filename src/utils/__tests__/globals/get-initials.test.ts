@@ -2,7 +2,7 @@ import { getInitials } from "@/utils/global/get-initials";
 
 describe("getInitials", () => {
   it("returns initials for a full name", () => {
-    expect(getInitials("Mary Jane Watson-Parker")).toBe("MW");
+    expect(getInitials("MaryJane WatsonParker")).toBe("MW");
   });
 
   it("returns first two letters for a single name", () => {

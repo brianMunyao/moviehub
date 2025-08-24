@@ -11,3 +11,5 @@ const queryClient = new Pool({
 });
 
 export const db = drizzle(queryClient, { schema });
+
+export const mockDb = drizzle.mock({ schema });
