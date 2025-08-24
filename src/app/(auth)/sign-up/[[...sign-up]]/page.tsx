@@ -112,7 +112,7 @@ const SignUpPage = () => {
   const onGoogleSignUp = async () => {
     await signUp?.authenticateWithRedirect({
       strategy: "oauth_google",
-      redirectUrl: "/sign-in/sso-callback",
+      redirectUrl: "/",
       redirectUrlComplete: "/",
     });
   };
