@@ -8,6 +8,13 @@
       "when": 1755856905221,
       "tag": "0000_initial-setup",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1756035807981,
+      "tag": "0001_username_to_email",
+      "breakpoints": true
     }
   ]
 }
