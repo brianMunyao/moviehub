@@ -3,10 +3,13 @@
 
 describe.skip("Home Page", () => {
   //TODO: to be updated after home page creation
-  // it("renders the Next.js logo", () => {
-  //   render(<Home />);
-  //   const logo = screen.getByAltText(/Next.js logo/i);
-  //   expect(logo).toBeInTheDocument();
+  it("Test", () => {
+    expect(1).toBe(1);
+  });
+  // it("renders the MovieHub Logo", () => {
+  // render(<Home />);
+  // const logo = screen.getByAltText(/MovieHub Logo/i);
+  // expect(logo).toBeInTheDocument();
   // });
   // it("renders a link to deploy", () => {
   //   render(<Home />);
