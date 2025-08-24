@@ -86,7 +86,7 @@ const SignInPage = () => {
     if (!isLoaded) return;
     signIn.authenticateWithRedirect({
       strategy: "oauth_google",
-      redirectUrl: "/sso-callback",
+      redirectUrl: "/",
       redirectUrlComplete: "/",
     });
   };
