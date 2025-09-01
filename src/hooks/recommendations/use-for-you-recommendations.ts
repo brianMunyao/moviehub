@@ -2,17 +2,23 @@
 
 import useSWR from "swr";
 
-import { IMediaItem } from "@/types/IMediaItem";
+import { IMediaItem, IMediaType } from "@/types/IMediaItem";
 import { IPaginatedResponse } from "@/types/IPaginatedResult";
 import { fetcher } from "@/utils/global/fetcher";
 import { toUrlSearchParams } from "@/utils/api/to-url-search-params";
 import { IGETPaginatedResponse, IResponse } from "@/types/IResponse";
 
-export const useDiscover = ({ page = 1 }: { page?: number }): IGETPaginatedResponse<IMediaItem> => {
+export const useForYouRecommendations = ({
+  page = 1,
+  mediaType,
+}: {
+  page?: number;
+  mediaType: IMediaType;
+}): IGETPaginatedResponse<IMediaItem> => {
   const searchParams = toUrlSearchParams({ page });
 
   const { data, error, isLoading } = useSWR<IResponse<IPaginatedResponse<IMediaItem>>, Error>(
-    `/api/recommendations/discover/${searchParams}`,
+    `/api/recommendations/for-you/${mediaType}/${searchParams}`,
     (url: string) =>
       fetcher<IResponse<IPaginatedResponse<IMediaItem>>>(url, {
         method: "GET",

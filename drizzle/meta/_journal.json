@@ -15,6 +15,13 @@
       "when": 1756035807981,
       "tag": "0001_username_to_email",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1756753013923,
+      "tag": "0002_favorites_and_watchlists",
+      "breakpoints": true
     }
   ]
 }
