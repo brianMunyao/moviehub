@@ -17,10 +17,10 @@ const CACHE_TTL = 1000 * 60 * 60 * 24; // 24h
 
 export const GET = async (
   req: Request,
-  { params }: { params: { type: MediaTypeWithAll; id: string } }
+  { params }: { params: Promise<{ type: MediaTypeWithAll; id: string }> }
 ) => {
   try {
-    const { type } = params;
+    const { type } = await params;
     const now = Date.now();
 
     // return from cache if valid
