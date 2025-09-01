@@ -4,7 +4,7 @@ import { useAuth } from "@clerk/nextjs";
 import React, { useEffect, useState } from "react";
 import Button from "./button";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import Link from "next/link";
 import NavUser from "./nav-user";
 import { cn } from "@/lib/utils";
@@ -51,6 +51,7 @@ const NavBar = () => {
           className={cn(scrollY > 200 ? "w-auto" : "")}
         />
 
+        {/* Desktop links */}
         <div className="hidden md:flex items-center gap-6">
           {links.map((link) => (
             <Link
@@ -63,7 +64,11 @@ const NavBar = () => {
           ))}
         </div>
 
-        <div className="hidden md:block">
+        {/* Right side: search + user */}
+        <div className="hidden md:flex items-center gap-4">
+          <Link href="/search" className="text-white hover:text-gray-300 transition-colors">
+            <Search size={22} />
+          </Link>
           {isLoaded ? (
             isSignedIn ? (
               <NavUser />
@@ -77,6 +82,7 @@ const NavBar = () => {
           )}
         </div>
 
+        {/* Mobile hamburger */}
         <button
           className="md:hidden text-white cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -85,6 +91,7 @@ const NavBar = () => {
         </button>
       </div>
 
+      {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-black px-4 py-4 flex flex-col gap-4">
           {links.map((link) => (
@@ -97,6 +104,16 @@ const NavBar = () => {
               {link.label}
             </Link>
           ))}
+
+          {/* Search for mobile */}
+          <Link
+            href="/search"
+            className="flex items-center gap-2 text-white text-lg hover:text-gray-300 transition-colors"
+            onClick={() => setMenuOpen(false)}
+          >
+            <Search size={20} />
+            Search
+          </Link>
 
           {isLoaded && (
             <div>
