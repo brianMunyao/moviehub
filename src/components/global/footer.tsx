@@ -5,8 +5,6 @@ import { Github } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { cn } from "@/lib/utils";
-
 const Footer = () => {
   return (
     <footer className="w-full bg-black border-t border-white/10 mt-16">
@@ -17,7 +15,7 @@ const Footer = () => {
             alt="MovieHub Logo"
             width={130}
             height={50}
-            className={cn(scrollY > 200 ? "w-auto" : "")}
+            className="w-auto"
           />
         </div>
 

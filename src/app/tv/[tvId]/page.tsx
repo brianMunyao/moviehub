@@ -6,7 +6,11 @@ import TvDetail from "@/components/movies/tv-detail";
 import MovieListGridSection from "@/components/movies/movie-list-grid-section";
 import { normalizeTV } from "@/utils/tmdb/normalize-media-item";
 
-const TvPage = ({ params }: { params: { tvId: string } }) => {
+type Props = {
+  params: Promise<{ tvId: string }>;
+};
+
+const TvPage = ({ params }: Props) => {
   const tv = tv_detail;
 
   return (
