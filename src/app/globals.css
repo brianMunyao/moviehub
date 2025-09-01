@@ -80,6 +80,9 @@
   --primary-dark-1: oklch(53.181% 0.23479 277.003);
   --primary-dark-2: oklch(49.722% 0.25031 274.593);
   --primary-dark-9: oklch(12.109% 0.06172 275.249);
+
+  --app-background: oklch(0.145 0 0);
+  --app-text-color: oklch(1 0 0);
 }
 
 .dark {
@@ -146,4 +149,9 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(4, 4, 4, 0.4);
+}
+
+body {
+  background: var(--app-background);
+  color: var(--app-text-color);
 }
