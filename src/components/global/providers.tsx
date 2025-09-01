@@ -1,6 +1,7 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import React, { PropsWithChildren } from "react";
 import { SWRConfig } from "swr";
+import { Toaster } from "@/components/ui/sonner";
 
 type Props = PropsWithChildren<object>;
 
@@ -15,6 +16,8 @@ const Providers = ({ children }: Props) => {
         }}
       >
         {children}
+
+        <Toaster />
       </SWRConfig>
     </ClerkProvider>
   );

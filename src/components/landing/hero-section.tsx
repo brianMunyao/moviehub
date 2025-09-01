@@ -9,11 +9,12 @@ import "swiper/css/autoplay";
 import "swiper/css/navigation";
 import Image from "next/image";
 import { buildImageUrl } from "@/utils/tmdb/build-image-url";
-import NavBar from "../global/navbar";
 import { cn } from "@/lib/utils";
 import Button from "../global/button";
-import { Bookmark, Star } from "lucide-react";
+import { Bookmark } from "lucide-react";
 import { IMediaItem } from "@/types/IMediaItem";
+import { toast } from "sonner";
+import FavoriteButton from "../favorites/favorites-button";
 
 type Props = {
   movies: IMediaItem[];
@@ -23,7 +24,6 @@ const AUTO_SCROLL_SPEED = 4000;
 
 const HeroSection = ({ movies }: Props) => {
   const [posterError, setPosterError] = useState(false);
-
   return (
     <div className="relative w-full h-[95vh] max-h-[700px] bg-black overflow-hidden">
       <Swiper
@@ -75,11 +75,14 @@ const HeroSection = ({ movies }: Props) => {
                   </p>
 
                   <div className="flex gap-3 justify-center md:justify-start">
-                    <Button variant="secondary" IconStart={Bookmark}>
+                    <FavoriteButton mediaItem={movie} />
+
+                    <Button
+                      variant="secondary"
+                      IconStart={Bookmark}
+                      onClick={() => toast.warning("Feature upcoming.")}
+                    >
                       Add to Watchlist
-                    </Button>
-                    <Button variant="outline" IconStart={Star}>
-                      Add to Favorites
                     </Button>
                   </div>
                 </div>

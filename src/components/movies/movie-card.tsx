@@ -11,6 +11,7 @@ import { createPortal } from "react-dom";
 import Button from "../global/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import FavoriteButton from "../favorites/favorites-button";
 
 gsap.registerPlugin(Flip);
 
@@ -113,17 +114,10 @@ const MovieCard = ({ item, flex }: Props) => {
                 </div>
 
                 <div className="mt-2 flex gap-3 justify-center md:justify-start">
+                  <FavoriteButton size="icon" mediaItem={item} />
+
                   <Button size="icon" variant="default" tooltip="Add to Watchlist">
                     <Bookmark className="size-4" />
-                  </Button>
-
-                  <Button
-                    size="icon"
-                    variant="outline"
-                    className="text-white"
-                    tooltip="Add to Favorites"
-                  >
-                    <Star className="size-4" />
                   </Button>
 
                   <Link
