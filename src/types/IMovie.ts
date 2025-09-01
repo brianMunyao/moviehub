@@ -16,11 +16,10 @@ export type IMovie = {
 };
 
 export type IMovieQueryOptions = {
-  language?: string;
   page?: number;
   include_adult?: boolean;
-  region?: string;
-  with_genres?: string; // Comma-separated genre IDs
+  with_genres?: string;
+  year?: number;
 };
 
 export type IMovieDetail = {

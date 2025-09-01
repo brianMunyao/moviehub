@@ -7,7 +7,15 @@ type Props = PropsWithChildren<object>;
 const Providers = ({ children }: Props) => {
   return (
     <ClerkProvider>
-      <SWRConfig>{children}</SWRConfig>
+      <SWRConfig
+        value={{
+          revalidateOnFocus: false,
+          revalidateOnReconnect: false,
+          revalidateIfStale: false,
+        }}
+      >
+        {children}
+      </SWRConfig>
     </ClerkProvider>
   );
 };

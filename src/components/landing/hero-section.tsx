@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -22,6 +22,8 @@ type Props = {
 const AUTO_SCROLL_SPEED = 4000;
 
 const HeroSection = ({ movies }: Props) => {
+  const [posterError, setPosterError] = useState(false);
+
   return (
     <div className="relative w-full h-[95vh] max-h-[700px] bg-black overflow-hidden">
       <div className="z-20 fixed top-0 left-0 w-full">
@@ -55,11 +57,16 @@ const HeroSection = ({ movies }: Props) => {
                   )}
                 >
                   <Image
-                    src={buildImageUrl(movie.poster_path) || ""}
+                    src={
+                      !posterError
+                        ? buildImageUrl(movie.poster_path) || ""
+                        : "https://placehold.co/300x400/EEE/aaaaaa?font=montserrat&text=Not+Found"
+                    }
                     alt={movie.title}
                     fill
                     style={{ objectFit: "cover" }}
                     className="transition-transform duration-500"
+                    onError={() => setPosterError(true)}
                   />
                 </div>
 
