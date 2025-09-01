@@ -1,22 +1,14 @@
+import tmdbAxiosApiClient from "@/configs/tmdb/axios-client";
 import { IMediaItem } from "@/types/IMediaItem";
-import { IMovieQueryOptions } from "@/types/IMovie";
+import { IMovieDetail, IMovieQueryOptions } from "@/types/IMovie";
 import { IPaginatedResponse } from "@/types/IPaginatedResult";
 import { normalizeMovie } from "@/utils/tmdb/normalize-media-item";
-import axios from "axios";
-
-const TMDB_API_KEY = process.env.TMDB_API_KEY!;
-if (!TMDB_API_KEY) throw new Error("TMDB_API_KEY is required");
-
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_TMDB_BASE_URL,
-  params: { api_key: TMDB_API_KEY },
-});
 
 let genreCache: { id: number; name: string }[] | null = null;
 const getGenresCached = async () => {
   try {
     if (genreCache) return genreCache;
-    const { data } = await api.get("/genre/movie/list");
+    const { data } = await tmdbAxiosApiClient.get("/genre/movie/list");
     genreCache = data.genres;
     return genreCache || [];
   } catch (err) {
@@ -28,7 +20,7 @@ const getGenresCached = async () => {
 const moviesService = {
   async getPopular(page = 1): Promise<IPaginatedResponse<IMediaItem>> {
     try {
-      const { data } = await api.get(`/movie/popular`, { params: { page } });
+      const { data } = await tmdbAxiosApiClient.get(`/movie/popular`, { params: { page } });
       return { ...data, results: data.results.map(normalizeMovie) };
     } catch (err) {
       console.error("Error fetching popular movies:", err);
@@ -38,7 +30,7 @@ const moviesService = {
 
   async getTopRated(page = 1): Promise<IPaginatedResponse<IMediaItem>> {
     try {
-      const { data } = await api.get(`/movie/top_rated`, { params: { page } });
+      const { data } = await tmdbAxiosApiClient.get(`/movie/top_rated`, { params: { page } });
       return { ...data, results: data.results.map(normalizeMovie) };
     } catch (err) {
       console.error("Error fetching top-rated movies:", err);
@@ -48,7 +40,7 @@ const moviesService = {
 
   async getNowPlaying(page = 1): Promise<IPaginatedResponse<IMediaItem>> {
     try {
-      const { data } = await api.get(`/movie/now_playing`, { params: { page } });
+      const { data } = await tmdbAxiosApiClient.get(`/movie/now_playing`, { params: { page } });
       return { ...data, results: data.results.map(normalizeMovie) };
     } catch (err) {
       console.error("Error fetching now playing movies:", err);
@@ -58,7 +50,7 @@ const moviesService = {
 
   async getUpcoming(page = 1): Promise<IPaginatedResponse<IMediaItem>> {
     try {
-      const { data } = await api.get(`/movie/upcoming`, { params: { page } });
+      const { data } = await tmdbAxiosApiClient.get(`/movie/upcoming`, { params: { page } });
       return { ...data, results: data.results.map(normalizeMovie) };
     } catch (err) {
       console.error("Error fetching upcoming movies:", err);
@@ -68,7 +60,9 @@ const moviesService = {
 
   async getRecommendations(movieId: number, page = 1): Promise<IPaginatedResponse<IMediaItem>> {
     try {
-      const { data } = await api.get(`/movie/${movieId}/recommendations`, { params: { page } });
+      const { data } = await tmdbAxiosApiClient.get(`/movie/${movieId}/recommendations`, {
+        params: { page },
+      });
       return { ...data, results: data.results.map(normalizeMovie) };
     } catch (err) {
       console.error(`Error fetching recommendations for movie ${movieId}:`, err);
@@ -78,7 +72,9 @@ const moviesService = {
 
   async getSimilar(movieId: number, page = 1): Promise<IPaginatedResponse<IMediaItem>> {
     try {
-      const { data } = await api.get(`/movie/${movieId}/similar`, { params: { page } });
+      const { data } = await tmdbAxiosApiClient.get(`/movie/${movieId}/similar`, {
+        params: { page },
+      });
       return { ...data, results: data.results.map(normalizeMovie) };
     } catch (err) {
       console.error(`Error fetching similar movies for movie ${movieId}:`, err);
@@ -91,7 +87,9 @@ const moviesService = {
     page = 1
   ): Promise<IPaginatedResponse<IMediaItem>> {
     try {
-      const { data } = await api.get(`/discover/movie`, { params: { page, ...params } });
+      const { data } = await tmdbAxiosApiClient.get(`/discover/movie`, {
+        params: { page, ...params },
+      });
       return { ...data, results: data.results.map(normalizeMovie) };
     } catch (err) {
       console.error("Error discovering movies:", err);
@@ -104,7 +102,7 @@ const moviesService = {
     options?: Partial<IMovieQueryOptions>
   ): Promise<IPaginatedResponse<IMediaItem>> {
     try {
-      const { data } = await api.get("/search/movie", {
+      const { data } = await tmdbAxiosApiClient.get("/search/movie", {
         params: { query, ...options },
       });
 
@@ -120,11 +118,11 @@ const moviesService = {
     }
   },
 
-  async details(id: number): Promise<IMediaItem | null> {
+  async details(id: number): Promise<IMovieDetail | null> {
     try {
-      const { data } = await api.get(`/movie/${id}`);
+      const { data } = await tmdbAxiosApiClient.get(`/movie/${id}`);
       if (!data) return null;
-      return normalizeMovie(data);
+      return data;
     } catch (err) {
       console.error(`Error fetching details for movie ${id}:`, err);
       return null;

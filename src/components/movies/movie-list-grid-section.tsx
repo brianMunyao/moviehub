@@ -2,13 +2,19 @@ import React from "react";
 
 import MovieCard from "./movie-card";
 import { IMediaItem } from "@/types/IMediaItem";
+import MovieListGridSectionSkeleton from "./movie-list-grid-section.skeleton";
 
 type Props = {
   title?: string;
   movies: IMediaItem[];
+  isLoading?: boolean;
 };
 
-const MovieListGridSection = ({ title, movies }: Props) => {
+const MovieListGridSection = ({ title, movies, isLoading }: Props) => {
+  if (isLoading) {
+    return <MovieListGridSectionSkeleton title={title} />;
+  }
+
   return (
     <div className="flex flex-col gap-4 px-4 py-10 max-w-6xl mx-auto">
       {title && (

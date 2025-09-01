@@ -126,7 +126,9 @@ const MovieCard = ({ item, flex }: Props) => {
                     <Star className="size-4" />
                   </Button>
 
-                  <Link href={item.media_type === "movie" ? `movies/${item.id}` : `tv/${item.id}`}>
+                  <Link
+                    href={item.media_type === "movie" ? `/movies/${item.id}` : `/tv/${item.id}`}
+                  >
                     <Button variant="outline" IconStart={Info} className="text-white">
                       View Details
                     </Button>
