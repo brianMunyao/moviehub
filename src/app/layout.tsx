@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={`${montserratSans.className} antialiased`}>
+        <body className={`${montserratSans.className} dark antialiased`}>
           <div className="z-20 fixed top-0 left-0 w-full">
             <NavBar />
           </div>
