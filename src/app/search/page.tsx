@@ -1,14 +1,15 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { LucideFilm, Loader2Icon, Video } from "lucide-react";
 import gsap from "gsap";
 
-import AppSelect from "@/components/global/app-select";
+import AppSelect, { IOption } from "@/components/global/app-select";
 import AppInput from "@/components/global/app-input";
 import MovieCard from "@/components/movies/movie-card";
 import { useSearch } from "@/hooks/recommendations/use-search";
+import { useGenres } from "@/hooks/genres/use-genres";
 
 const SearchPage = () => {
   const router = useRouter();
@@ -19,11 +20,43 @@ const SearchPage = () => {
   const [year, setYear] = useState(searchParams.get("year") || "");
   const [genres, setGenres] = useState(searchParams.get("genres") || "");
 
+  const { genres: availableGenres } = useGenres("all");
+
   const [debouncedQuery, setDebouncedQuery] = useState(query);
   const debounceTimeout = useRef<NodeJS.Timeout>(null);
 
   const filmRef = useRef<SVGSVGElement | null>(null);
   const videoRef = useRef<SVGSVGElement | null>(null);
+
+  const genreOptions: IOption[] = useMemo(() => {
+    const res: IOption[] = [{ label: "All", value: "all" }];
+
+    if (category === "movie" || category === "all") {
+      res.push({
+        label: "Movies",
+        options: availableGenres
+          .filter((g) => g.mediaType === "movie")
+          .map((g) => ({
+            label: g.name,
+            value: g.id.toString(),
+          })),
+      });
+    }
+
+    if (category === "tv" || category === "all") {
+      res.push({
+        label: "TV",
+        options: availableGenres
+          .filter((g) => g.mediaType === "tv")
+          .map((g) => ({
+            label: g.name,
+            value: g.id.toString(),
+          })),
+      });
+    }
+
+    return res;
+  }, [availableGenres, category]);
 
   useEffect(() => {
     if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
@@ -152,23 +185,7 @@ const SearchPage = () => {
             value={genres}
             onChange={setGenres}
             placeholder="Genre"
-            options={[
-              { label: "All", value: "all" },
-              {
-                label: "Movies",
-                options: [
-                  { label: "Action", value: "action" },
-                  { label: "Drama", value: "drama" },
-                ],
-              },
-              {
-                label: "TV",
-                options: [
-                  { label: "Comedy", value: "comedy" },
-                  { label: "Documentary", value: "doc" },
-                ],
-              },
-            ]}
+            options={genreOptions}
           />
         </div>
 
