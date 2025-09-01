@@ -6,7 +6,11 @@ import { MovieDetail } from "@/components/movies/movie-detail";
 import { normalizeMovie } from "@/utils/tmdb/normalize-media-item";
 import MovieListGridSection from "@/components/movies/movie-list-grid-section";
 
-const MoviePage = ({ params }: { params: { movieId: string } }) => {
+type Props = {
+  params: Promise<{ movieId: string }>;
+};
+
+const MoviePage = ({ params }: Props) => {
   const movie = movie_detail;
 
   return (
