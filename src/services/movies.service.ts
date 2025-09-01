@@ -1,6 +1,6 @@
 import tmdbAxiosApiClient from "@/configs/tmdb/axios-client";
 import { IMediaItem } from "@/types/IMediaItem";
-import { IMovieQueryOptions } from "@/types/IMovie";
+import { IMovieDetail, IMovieQueryOptions } from "@/types/IMovie";
 import { IPaginatedResponse } from "@/types/IPaginatedResult";
 import { normalizeMovie } from "@/utils/tmdb/normalize-media-item";
 
@@ -118,11 +118,11 @@ const moviesService = {
     }
   },
 
-  async details(id: number): Promise<IMediaItem | null> {
+  async details(id: number): Promise<IMovieDetail | null> {
     try {
       const { data } = await tmdbAxiosApiClient.get(`/movie/${id}`);
       if (!data) return null;
-      return normalizeMovie(data);
+      return data;
     } catch (err) {
       console.error(`Error fetching details for movie ${id}:`, err);
       return null;

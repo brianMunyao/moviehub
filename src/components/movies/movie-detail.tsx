@@ -11,8 +11,8 @@ type Props = {
 
 export const MovieDetail = ({ movie }: Props) => {
   return (
-    <div className="min-h-[95vh] w-full bg-black text-white">
-      <div className="relative w-full h-[60vh]">
+    <div className="h-[90vh] w-full bg-black text-white">
+      <div className="relative w-full h-[90vh]">
         <Image
           src={buildImageUrl(movie.backdrop_path, "original") || ""}
           alt={movie.title}
@@ -22,7 +22,7 @@ export const MovieDetail = ({ movie }: Props) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
       </div>
 
-      <div className="relative -mt-40 px-6 md:px-12 flex flex-col md:flex-row gap-8">
+      <div className="max-w-6xl mx-auto relative px-4 flex flex-col md:flex-row gap-8 bottom-10 -translate-y-full">
         <div className="relative w-52 h-72 shrink-0">
           <Image
             src={buildImageUrl(movie.poster_path) || ""}

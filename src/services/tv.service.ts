@@ -1,6 +1,6 @@
-import { paginated_tv_shows, tv_shows } from "@/constants/mock-data/tv-shows";
+import { paginated_tv_shows } from "@/constants/mock-data/tv-shows";
 import { IPaginatedResponse } from "@/types/IPaginatedResult";
-import { ITVQueryOptions } from "@/types/ITVShow";
+import { ITVDetail, ITVQueryOptions } from "@/types/ITVShow";
 import { IMediaItem } from "@/types/IMediaItem";
 import { normalizeTV } from "@/utils/tmdb/normalize-media-item";
 import tmdbAxiosApiClient from "@/configs/tmdb/axios-client";
@@ -51,18 +51,6 @@ export const tvService = {
     return { ...data, results: data.results.map(normalizeTV) };
   },
 
-  // async discover(options?: ITVQueryOptions): Promise<IPaginatedResponse<IMediaItem>> {
-  //   // const { data } = await tmdbAxiosApiClient.get("/discover/tv", { params: options });
-  //   const data = paginated_tv_shows;
-
-  //   return {
-  //     results: data.results.map(normalizeTV),
-  //     page: data.page,
-  //     total_pages: data.total_pages,
-  //     total_results: data.total_results,
-  //   };
-  // },
-
   async search(
     query: string,
     options?: Partial<ITVQueryOptions>
@@ -80,10 +68,10 @@ export const tvService = {
     };
   },
 
-  async details(id: number): Promise<IMediaItem> {
-    // const { data } = await tmdbAxiosApiClient.get(`/tv/${id}`);
-    const tv = tv_shows.find((t) => t.id === id) || tv_shows[0];
-    return normalizeTV(tv);
+  async details(id: number): Promise<ITVDetail | null> {
+    const { data } = await tmdbAxiosApiClient.get(`/tv/${id}`);
+    if (!data) return null;
+    return data;
   },
 
   async genres(): Promise<{ id: number; name: string }[]> {
