@@ -52,7 +52,7 @@ const recommendationService = {
     mediaType: "all" | "movie" | "tv" | "person" = "all",
     timeWindow: "day" | "week" = "day",
     page = 1
-  ) {
+  ): Promise<IPaginatedResponse<IMediaItem>> {
     const { data } = await tmdbAxiosApiClient.get(`/trending/${mediaType}/${timeWindow}`, {
       params: { page },
     });
