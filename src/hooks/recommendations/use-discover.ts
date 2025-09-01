@@ -12,7 +12,7 @@ export const useDiscover = ({ page = 1 }: { page?: number }): IGETPaginatedRespo
   const searchParams = toUrlSearchParams({ page });
 
   const { data, error, isLoading } = useSWR<IResponse<IPaginatedResponse<IMediaItem>>, Error>(
-    `api/recommendations/discover/${searchParams}`,
+    `/api/recommendations/discover/${searchParams}`,
     (url: string) =>
       fetcher<IResponse<IPaginatedResponse<IMediaItem>>>(url, {
         method: "GET",
