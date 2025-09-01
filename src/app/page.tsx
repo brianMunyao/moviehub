@@ -2,13 +2,13 @@
 
 import HeroSection from "@/components/landing/hero-section";
 import MovieListSection from "@/components/movies/movie-list-section";
-import { movies } from "@/constants/mock-data/movies";
 import { tv_shows } from "@/constants/mock-data/tv-shows";
 import { useTopRatedMovies } from "@/hooks/movies/use-top-rated-movies";
 import { useDiscover } from "@/hooks/recommendations/use-discover";
+import { useForYouRecommendations } from "@/hooks/recommendations/use-for-you-recommendations";
 import { useTrending } from "@/hooks/recommendations/use-trending";
 import { shuffleArray } from "@/utils/global/shuffle-array";
-import { normalizeMovie, normalizeTV } from "@/utils/tmdb/normalize-media-item";
+import { normalizeTV } from "@/utils/tmdb/normalize-media-item";
 import React from "react";
 
 const HomePage = () => {
@@ -20,6 +20,12 @@ const HomePage = () => {
 
   const { results: topRatedMovies, isLoading: isTopRatedMoviesLoading } = useTopRatedMovies({});
 
+  const { results: forYouRecommendations, isLoading: isForYouRecommendationsLoading } =
+    useForYouRecommendations({ mediaType: "movie" });
+
+  const { results: tvForYouRecommendations, isLoading: isTvForYouRecommendationsLoading } =
+    useForYouRecommendations({ mediaType: "tv" });
+
   return (
     <main className="">
       <HeroSection movies={results} />
@@ -30,6 +36,12 @@ const HomePage = () => {
         isLoading={isTrendingNowLoading}
       />
 
+      <MovieListSection
+        title="For You"
+        movies={forYouRecommendations}
+        isLoading={isForYouRecommendationsLoading}
+      />
+
       <MovieListSection title="TV" movies={shuffleArray(tv_shows).map(normalizeTV)} />
 
       <MovieListSection
@@ -38,7 +50,11 @@ const HomePage = () => {
         isLoading={isTopRatedMoviesLoading}
       />
 
-      <MovieListSection title="Movies" movies={shuffleArray(movies).map(normalizeMovie)} />
+      <MovieListSection
+        title="TV Shows For You"
+        movies={tvForYouRecommendations}
+        isLoading={isTvForYouRecommendationsLoading}
+      />
     </main>
   );
 };
