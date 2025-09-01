@@ -26,10 +26,6 @@ const HeroSection = ({ movies }: Props) => {
 
   return (
     <div className="relative w-full h-[95vh] max-h-[700px] bg-black overflow-hidden">
-      <div className="z-20 fixed top-0 left-0 w-full">
-        <NavBar />
-      </div>
-
       <Swiper
         slidesPerView={1}
         centeredSlides
