@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const TMDB_API_KEY = process.env.TMDB_API_KEY!;
-if (!TMDB_API_KEY) throw new Error("TMDB_API_KEY is required");
+const TMDB_API_KEY = process.env.TMDB_API_KEY || "";
 
 const tmdbAxiosApiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_TMDB_BASE_URL,
