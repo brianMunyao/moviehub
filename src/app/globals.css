@@ -79,6 +79,7 @@
 
   --primary-dark-1: oklch(53.181% 0.23479 277.003);
   --primary-dark-2: oklch(49.722% 0.25031 274.593);
+  --primary-dark-9: oklch(12.109% 0.06172 275.249);
 }
 
 .dark {
@@ -122,4 +123,27 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 100, 100, 0.6);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(4, 4, 4, 0.4);
 }
