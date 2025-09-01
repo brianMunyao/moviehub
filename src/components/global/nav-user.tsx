@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser, SignOutButton, useAuth } from "@clerk/nextjs";
 import { Bookmark, Star, LogOut } from "lucide-react";
 
