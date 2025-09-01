@@ -22,7 +22,7 @@ export const MovieDetail = ({ movie }: Props) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
       </div>
 
-      <div className="max-w-6xl mx-auto relative px-4 flex flex-col md:flex-row gap-8 bottom-10 -translate-y-full">
+      <div className="max-w-7xl mx-auto relative px-4 flex flex-col md:flex-row gap-8 bottom-10 -translate-y-full">
         <div className="relative w-52 h-72 shrink-0">
           <Image
             src={buildImageUrl(movie.poster_path) || ""}

@@ -39,7 +39,7 @@ const NavBar = () => {
     >
       <div
         className={cn(
-          "flex items-center justify-between max-w-6xl mx-auto px-4",
+          "flex items-center justify-between max-w-7xl mx-auto px-4",
           scrollY > 200 ? "py-2" : "py-4"
         )}
       >

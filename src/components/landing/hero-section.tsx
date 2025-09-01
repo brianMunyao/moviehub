@@ -46,7 +46,7 @@ const HeroSection = ({ movies }: Props) => {
               />
               <div className="absolute inset-0 bg-black/60" />
 
-              <div className="relative z-20 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-start gap-8 md:gap-12 h-full px-2 max-w-6xl mx-auto">
+              <div className="relative z-20 flex flex-col md:flex-row items-center md:items-end justify-center md:justify-start gap-8 md:gap-12 h-full px-2 max-w-7xl mx-auto">
                 <div
                   className={cn(
                     "relative w-[170px] h-[250px] rounded-xl overflow-hidden shadow-lg transition-transform duration-500"
