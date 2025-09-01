@@ -41,6 +41,7 @@ jobs:
     environment: development
     env:
       TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
 
     steps:
       - name: Checkout code
@@ -72,6 +73,7 @@ jobs:
     environment: production
     env:
       TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
 
     steps:
       - name: Checkout code
