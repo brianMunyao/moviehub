@@ -4,12 +4,11 @@ import React from "react";
 import { Film } from "lucide-react";
 
 import MovieListGridSection from "@/components/movies/movie-list-grid-section";
-import { normalizeMovie } from "@/utils/tmdb/normalize-media-item";
 import NotFoundSection from "@/components/global/not-found-section";
-import { movies } from "@/constants/mock-data/movies";
 import { useMovieDetails } from "@/hooks/movies/use-movie-details";
 import { MovieDetailSkeleton } from "@/components/movies/movie-details.skeleton";
 import { MovieDetail } from "@/components/movies/movie-detail";
+import { useSimilarMovies } from "@/hooks/movies/use-similar-movies";
 
 type Props = {
   params: Promise<{ movieId: string }>;
@@ -18,6 +17,10 @@ type Props = {
 const MoviePage = ({ params }: Props) => {
   const { movieId } = React.use(params);
   const { movie, isLoading } = useMovieDetails(Number(movieId));
+
+  const { results: similarMovies, isLoading: isSimilarMoviesLoading } = useSimilarMovies(
+    Number(movieId)
+  );
 
   if (isLoading) {
     return <MovieDetailSkeleton />;
@@ -37,7 +40,11 @@ const MoviePage = ({ params }: Props) => {
     <div className="relative w-full overflow-hidden">
       <MovieDetail movie={movie} />
 
-      <MovieListGridSection title="You might also like" movies={movies.map(normalizeMovie)} />
+      <MovieListGridSection
+        title="You might also like"
+        movies={similarMovies}
+        isLoading={isSimilarMoviesLoading}
+      />
     </div>
   );
 };
