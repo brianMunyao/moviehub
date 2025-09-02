@@ -95,13 +95,15 @@ const SignInPage = () => {
     <Card className="w-full max-w-md border-none shadow-none rounded-2xl">
       <CardHeader>
         <div className="flex items-center gap-2 mb-4">
-          <Image
-            src="/logo-with-text.svg"
-            alt="MovieHub Logo"
-            width={40}
-            height={40}
-            className="w-auto"
-          />
+          <Link href="/">
+            <Image
+              src="/logo-with-text.svg"
+              alt="MovieHub Logo"
+              width={130}
+              height={50}
+              className="w-auto"
+            />
+          </Link>
         </div>
         <CardTitle className="text-3xl font-medium">Welcome to MovieHub</CardTitle>
         <CardDescription className="text-base">
