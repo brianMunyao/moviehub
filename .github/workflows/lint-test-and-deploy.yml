@@ -40,6 +40,7 @@ jobs:
     if: github.ref == 'refs/heads/dev'
     environment: development
     env:
+      TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
 
     steps:
@@ -62,7 +63,7 @@ jobs:
           npx vercel \
             --token=${{ secrets.VERCEL_TOKEN }} \
             --scope=${{ secrets.VERCEL_ORG_SLUG }} \
-            --confirm
+            --yes
 
   deploy-prod:
     name: Deploy to Vercel (Prod)
@@ -71,6 +72,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     environment: production
     env:
+      TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
 
     steps:
@@ -93,4 +95,4 @@ jobs:
           npx vercel --prod \
             --token=${{ secrets.VERCEL_TOKEN }} \
             --scope=${{ secrets.VERCEL_ORG_SLUG }} \
-            --confirm
+            --yes

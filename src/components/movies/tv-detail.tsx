@@ -11,8 +11,8 @@ type Props = {
 
 const TvDetail = ({ tv }: Props) => {
   return (
-    <div className="min-h-screen w-full bg-black text-white">
-      <div className="relative w-full h-[60vh]">
+    <div className="h-[90vh] w-full bg-black text-white">
+      <div className="relative w-full h-[90vh]">
         <Image
           src={buildImageUrl(tv.backdrop_path, "original") || ""}
           alt={tv.name}
@@ -22,7 +22,7 @@ const TvDetail = ({ tv }: Props) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
       </div>
 
-      <div className="relative -mt-40 px-6 md:px-12 flex flex-col md:flex-row gap-8">
+      <div className="max-w-6xl mx-auto relative px-4 flex flex-col md:flex-row gap-8 bottom-10 -translate-y-full">
         <div className="relative w-52 h-72 shrink-0">
           <Image
             src={buildImageUrl(tv.poster_path) || ""}

@@ -17,11 +17,10 @@ export type ITVShow = {
 };
 
 export type ITVQueryOptions = {
-  language?: string;
   page?: number;
   include_adult?: boolean;
-  region?: string;
   with_genres?: string;
+  year?: number;
 };
 
 export type ITVDetail = {

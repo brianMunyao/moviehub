@@ -1,20 +1,10 @@
-import { paginated_movies } from "@/constants/mock-data/movies";
-import { paginated_tv_shows } from "@/constants/mock-data/tv-shows";
-import axios from "axios";
-
 import moviesService from "./movies.service";
 import tvService from "./tv.service";
 import { IPaginatedResponse } from "@/types/IPaginatedResult";
 import { IMediaItem } from "@/types/IMediaItem";
 import { normalizeMovie, normalizeTV } from "@/utils/tmdb/normalize-media-item";
-
-const TMDB_API_KEY = process.env.TMDB_API_KEY!;
-if (!TMDB_API_KEY) throw new Error("TMDB_API_KEY is required");
-
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_TMDB_BASE_URL,
-  params: { api_key: TMDB_API_KEY },
-});
+import { IMultiQueryOptions } from "@/types/IMulti";
+import tmdbAxiosApiClient from "@/configs/tmdb/axios-client";
 
 const recommendationService = {
   // --- Recommendations ---
@@ -37,8 +27,13 @@ const recommendationService = {
   },
 
   // --- Search ---
-  async searchAll(query: string, page = 1): Promise<IPaginatedResponse<IMediaItem>> {
-    const { data } = await api.get(`/search/multi`, { params: { query, page } });
+  async searchAll(
+    query: string,
+    params: IMultiQueryOptions = {}
+  ): Promise<IPaginatedResponse<IMediaItem>> {
+    const { data } = await tmdbAxiosApiClient.get(`/search/multi`, {
+      params: { query, ...params },
+    });
     return {
       ...data,
       results: data.results
@@ -57,8 +52,10 @@ const recommendationService = {
     mediaType: "all" | "movie" | "tv" | "person" = "all",
     timeWindow: "day" | "week" = "day",
     page = 1
-  ) {
-    const { data } = await api.get(`/trending/${mediaType}/${timeWindow}`, { params: { page } });
+  ): Promise<IPaginatedResponse<IMediaItem>> {
+    const { data } = await tmdbAxiosApiClient.get(`/trending/${mediaType}/${timeWindow}`, {
+      params: { page },
+    });
     return {
       ...data,
       results: data.results
