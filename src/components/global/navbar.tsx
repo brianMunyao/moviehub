@@ -36,7 +36,7 @@ const NavBar = () => {
   return (
     <div
       className={cn(
-        "w-full fixed top-0 left-0 z-50 transition-all duration-500",
+        "w-full fixed top-0 left-0 z-[99] transition-all duration-500",
         scrollY > 50 ? "bg-black/60 backdrop-blur-md shadow-md" : "bg-black/0 backdrop-blur-none"
       )}
     >

@@ -1,5 +1,6 @@
 "use client";
 
+import NavBar from "@/components/global/navbar";
 import HeroSection from "@/components/landing/hero-section";
 import MovieListSection from "@/components/movies/movie-list-section";
 import { tv_shows } from "@/constants/mock-data/tv-shows";
@@ -27,7 +28,11 @@ const HomePage = () => {
     useForYouRecommendations({ mediaType: "tv" });
 
   return (
-    <main className="">
+    <main className="dark">
+      <div className="z-[99] fixed top-0 left-0 w-full">
+        <NavBar />
+      </div>
+
       <HeroSection movies={results} />
 
       <MovieListSection

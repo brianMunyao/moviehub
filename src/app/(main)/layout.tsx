@@ -8,7 +8,7 @@ type Props = PropsWithChildren<object>;
 const MainLayout = ({ children }: Props) => {
   return (
     <div className="dark">
-      <div className="z-20 fixed top-0 left-0 w-full">
+      <div className="z-[99] fixed top-0 left-0 w-full">
         <NavBar />
       </div>
 
