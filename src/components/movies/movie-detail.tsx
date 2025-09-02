@@ -15,19 +15,20 @@ type Props = {
 
 export const MovieDetail = ({ movie }: Props) => {
   return (
-    <div className="h-[90vh] w-full bg-black text-white">
-      <div className="relative w-full h-[90vh]">
+    <div className="relative w-full bg-black text-white">
+      <div className="relative w-full h-[50vh] md:h-[70vh]">
         <Image
           src={buildImageUrl(movie.backdrop_path, "original") || ""}
           alt={movie.title}
           fill
           className="object-cover brightness-50"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative px-4 flex flex-col md:flex-row gap-8 bottom-10 -translate-y-full">
-        <div className="relative w-52 h-72 shrink-0">
+      <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-6 md:gap-10 relative -mt-24 md:-mt-32">
+        <div className="relative w-40 h-60 md:w-52 md:h-72 shrink-0 mx-auto md:mx-0">
           <Image
             src={buildImageUrl(movie.poster_path) || ""}
             alt={movie.title}
@@ -36,11 +37,11 @@ export const MovieDetail = ({ movie }: Props) => {
           />
         </div>
 
-        <div className="flex-1 space-y-4">
-          <h1 className="text-3xl md:text-5xl font-bold">{movie.title}</h1>
-          <p className="text-lg italic text-gray-300">{movie.tagline}</p>
+        <div className="flex-1 space-y-4 text-center md:text-left">
+          <h1 className="text-2xl md:text-5xl font-bold">{movie.title}</h1>
+          <p className="text-base md:text-lg italic text-gray-300">{movie.tagline}</p>
 
-          <div className="flex flex-wrap items-center gap-2 text-sm">
+          <div className="flex flex-wrap justify-center md:justify-start items-center gap-2 text-sm">
             <div className="border flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm text-gray-100">
               <Star className="w-4 h-4 text-yellow-400" />
               {movie.vote_average.toFixed(1)} ({movie.vote_count.toLocaleString()})
@@ -56,7 +57,7 @@ export const MovieDetail = ({ movie }: Props) => {
               </div>
             )}
 
-            {movie?.genres && movie?.genres.length > 0 && (
+            {movie?.genres?.length > 0 && (
               <div className="border flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm text-gray-100">
                 <Film className="w-4 h-4" />
                 {movie.genres.map((g) => g.name).join(", ")}
@@ -64,9 +65,11 @@ export const MovieDetail = ({ movie }: Props) => {
             )}
           </div>
 
-          <p className="text-gray-200 leading-relaxed max-w-[80%]">{movie.overview}</p>
+          <p className="text-gray-200 leading-relaxed max-w-3xl mx-auto md:mx-0">
+            {movie.overview}
+          </p>
 
-          <div className="flex gap-3 justify-center md:justify-start">
+          <div className="flex gap-3 justify-start flex-wrap">
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <FavoriteButton mediaItem={normalizeMovie(movie as any)} />
 
