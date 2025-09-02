@@ -8,7 +8,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <footer className="w-full bg-black border-t border-white/10 mt-16">
-      <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex items-center gap-2 text-white">
           <Image
             src="/logo-with-text-white.svg"

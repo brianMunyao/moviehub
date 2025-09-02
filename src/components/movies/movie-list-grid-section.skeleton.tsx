@@ -8,7 +8,7 @@ type Props = {
 
 const MovieListGridSectionSkeleton = ({ title, count = 10 }: Props) => {
   return (
-    <div className="flex flex-col gap-4 px-4 py-10 max-w-6xl mx-auto">
+    <div className="flex flex-col gap-4 px-4 py-10 max-w-7xl mx-auto">
       {title && (
         <div className="w-fit flex flex-col gap-1 mb-5">
           <Skeleton className="h-6 md:h-8 w-40" />
