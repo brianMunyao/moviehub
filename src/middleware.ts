@@ -1,14 +1,22 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const publicMovieRoutes: string[] = [];
-const publicTVRoutes: string[] = [];
+const publicApiRoutes: string[] = [
+  "/api/genres(.*)",
+  "/api/movies(.*)",
+  "/api/recommendations/discover",
+  "/api/recommendations/search",
+  "/api/recommendations/trending",
+  "/api/tv(.*)",
+];
 
 const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/",
-  ...publicMovieRoutes,
-  ...publicTVRoutes,
+  "/search",
+  "/tv(.*)",
+  "/movies(.*)",
+  ...publicApiRoutes,
 ]);
 
 export default clerkMiddleware(async (auth, req) => {

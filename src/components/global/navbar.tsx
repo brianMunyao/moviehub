@@ -23,33 +23,38 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const links = [
-    { href: "/", label: "Home" },
-    { href: "/movies", label: "Movies" },
-    { href: "/tv-shows", label: "TV Shows" },
-    { href: "/genres", label: "Genres" },
+  const links: {
+    href: string;
+    label: string;
+  }[] = [
+    // { href: "/", label: "Home" },
+    // { href: "/movies", label: "Movies" },
+    // { href: "/tv-shows", label: "TV Shows" },
+    // { href: "/genres", label: "Genres" },
   ];
 
   return (
     <div
       className={cn(
-        "w-full transition-all duration-500 fixed top-0 left-0 z-50",
-        scrollY > 200 ? "bg-black" : "bg-transparent"
+        "w-full fixed top-0 left-0 z-[99] transition-all duration-500",
+        scrollY > 50 ? "bg-black/60 backdrop-blur-md shadow-md" : "bg-black/0 backdrop-blur-none"
       )}
     >
       <div
         className={cn(
-          "flex items-center justify-between max-w-6xl mx-auto px-4",
-          scrollY > 200 ? "py-2" : "py-4"
+          "flex items-center justify-between max-w-7xl mx-auto px-4 transition-all duration-500",
+          scrollY > 50 ? "py-2" : "py-4"
         )}
       >
-        <Image
-          src="/logo-with-text-white.svg"
-          alt="MovieHub Logo"
-          width={130}
-          height={50}
-          className={cn(scrollY > 200 ? "w-auto" : "")}
-        />
+        <Link href="/">
+          <Image
+            src="/logo-with-text-white.svg"
+            alt="MovieHub Logo"
+            width={130}
+            height={50}
+            className="w-auto"
+          />
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-6">
@@ -93,7 +98,7 @@ const NavBar = () => {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-black px-4 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-black/70 backdrop-blur-md px-4 py-4 flex flex-col gap-4">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -105,7 +110,6 @@ const NavBar = () => {
             </Link>
           ))}
 
-          {/* Search for mobile */}
           <Link
             href="/search"
             className="flex items-center gap-2 text-white text-lg hover:text-gray-300 transition-colors"

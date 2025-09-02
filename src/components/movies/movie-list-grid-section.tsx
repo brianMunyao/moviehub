@@ -16,7 +16,7 @@ const MovieListGridSection = ({ title, movies, isLoading }: Props) => {
   }
 
   return (
-    <div className="flex flex-col gap-4 px-4 py-10 max-w-6xl mx-auto">
+    <div className="flex flex-col gap-4 px-4 py-10 max-w-7xl mx-auto">
       {title && (
         <div className="w-fit flex flex-col gap-1 mb-5">
           <h3 className="text-xl md:text-3xl font-bold">{title}</h3>

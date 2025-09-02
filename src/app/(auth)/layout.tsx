@@ -7,13 +7,13 @@ type Props = PropsWithChildren<object>;
 
 const posters = [
   "/example-poster.jpg",
+  "/example-poster-1.jpg",
+  "/example-poster-2.jpg",
+  "/example-poster-3.jpg",
   "/example-poster.jpg",
-  "/example-poster.jpg",
-  "/example-poster.jpg",
-  "/example-poster.jpg",
-  "/example-poster.jpg",
-  "/example-poster.jpg",
-  "/example-poster.jpg",
+  "/example-poster-1.jpg",
+  "/example-poster-2.jpg",
+  "/example-poster-3.jpg",
 ];
 
 const AuthLayout = ({ children }: Props) => {

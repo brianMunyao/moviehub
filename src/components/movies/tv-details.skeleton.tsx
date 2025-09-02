@@ -5,7 +5,7 @@ export const TvDetailSkeleton = () => {
     <div className="h-[90vh] w-full bg-black text-white animate-pulse">
       <div className="relative w-full h-[90vh] bg-gray-800" />
 
-      <div className="max-w-6xl mx-auto relative px-4 flex flex-col md:flex-row gap-8 bottom-10 -translate-y-full">
+      <div className="max-w-7xl mx-auto relative px-4 flex flex-col md:flex-row gap-8 bottom-10 -translate-y-full">
         <div className="w-52 h-72 bg-gray-700 rounded-xl shadow-lg" />
 
         <div className="flex-1 space-y-4">
