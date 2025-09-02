@@ -12,7 +12,25 @@ const montserratSans = Montserrat({
 
 export const metadata: Metadata = {
   title: "MovieHub",
-  description: "MovieHub provides the latest and trending movies & shows in one place.",
+  description: "Discover movies and TV shows with personalized recommendations.",
+  openGraph: {
+    title: "MovieHub",
+    description: "Discover movies and TV shows with personalized recommendations.",
+    url: process.env.NEXT_PUBLIC_SITE_URL,
+    siteName: "MovieHub",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/logo-with-text.svg`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
