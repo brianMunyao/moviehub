@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/global/footer";
 import NavBar from "@/components/global/navbar";
 import HeroSection from "@/components/landing/hero-section";
 import MovieListSection from "@/components/movies/movie-list-section";
@@ -10,9 +11,11 @@ import { useForYouRecommendations } from "@/hooks/recommendations/use-for-you-re
 import { useTrending } from "@/hooks/recommendations/use-trending";
 import { shuffleArray } from "@/utils/global/shuffle-array";
 import { normalizeTV } from "@/utils/tmdb/normalize-media-item";
+import { useAuth } from "@clerk/nextjs";
 import React from "react";
 
 const HomePage = () => {
+  const { isSignedIn } = useAuth();
   const { results } = useDiscover({ page: 1 });
 
   const { results: trendingNow, isLoading: isTrendingNowLoading } = useTrending({
@@ -41,11 +44,13 @@ const HomePage = () => {
         isLoading={isTrendingNowLoading}
       />
 
-      <MovieListSection
-        title="For You"
-        movies={forYouRecommendations}
-        isLoading={isForYouRecommendationsLoading}
-      />
+      {isSignedIn && (
+        <MovieListSection
+          title="For You"
+          movies={forYouRecommendations}
+          isLoading={isForYouRecommendationsLoading}
+        />
+      )}
 
       <MovieListSection title="TV" movies={shuffleArray(tv_shows).map(normalizeTV)} />
 
@@ -55,11 +60,15 @@ const HomePage = () => {
         isLoading={isTopRatedMoviesLoading}
       />
 
-      <MovieListSection
-        title="TV Shows For You"
-        movies={tvForYouRecommendations}
-        isLoading={isTvForYouRecommendationsLoading}
-      />
+      {isSignedIn && (
+        <MovieListSection
+          title="TV Shows For You"
+          movies={tvForYouRecommendations}
+          isLoading={isTvForYouRecommendationsLoading}
+        />
+      )}
+
+      <Footer />
     </main>
   );
 };
