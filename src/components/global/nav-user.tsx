@@ -67,7 +67,7 @@ const NavUser = () => {
           </button>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end" sideOffset={4} className="min-w-56 rounded-lg">
+        <DropdownMenuContent align="end" sideOffset={4} className="dark min-w-56 rounded-lg">
           <DropdownMenuLabel className="p-0 font-normal">
             <div className="flex items-center gap-2 px-3 py-2 text-left text-sm">
               <Avatar className="h-8 w-8 rounded-lg">
