@@ -24,7 +24,7 @@ const FavoritesModal = ({ open, onClose }: Props) => {
 
   return (
     <Drawer direction="right" open={open} onOpenChange={onClose}>
-      <DrawerContent className="w-full min-w-full md:min-w-[450px] bg-background shadow-2xl flex flex-col">
+      <DrawerContent className="dark w-full min-w-full md:min-w-[450px] bg-background shadow-2xl flex flex-col z-[100]">
         <DrawerHeader className="flex flex-row items-center justify-between border-b p-4">
           <div className="flex items-center gap-2">
             <Star className="w-6 h-6 text-yellow-400" />
