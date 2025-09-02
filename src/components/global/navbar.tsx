@@ -71,9 +71,17 @@ const NavBar = () => {
 
         {/* Right side: search + user */}
         <div className="hidden md:flex items-center gap-4">
+          <Link
+            href="/movies"
+            className="text-white hover:text-gray-300 transition-colors mr-2 md:mr-5"
+          >
+            Discover
+          </Link>
+
           <Link href="/search" className="text-white hover:text-gray-300 transition-colors">
             <Search size={22} />
           </Link>
+
           {isLoaded ? (
             isSignedIn ? (
               <NavUser />
@@ -109,6 +117,13 @@ const NavBar = () => {
               {link.label}
             </Link>
           ))}
+
+          <Link
+            href="/movies"
+            className="text-white hover:text-gray-300 transition-colors mr-2 md:mr-5"
+          >
+            Discover
+          </Link>
 
           <Link
             href="/search"
