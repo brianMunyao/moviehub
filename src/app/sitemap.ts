@@ -13,19 +13,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 1,
     },
-    // TODO: To be added
-    // {
-    //   url: `${siteUrl}/movies`,
-    //   lastModified: currentDate,
-    //   changeFrequency: "daily" as const,
-    //   priority: 0.9,
-    // },
-    // {
-    //   url: `${siteUrl}/tv`,
-    //   lastModified: currentDate,
-    //   changeFrequency: "daily" as const,
-    //   priority: 0.9,
-    // },
+    {
+      url: `${siteUrl}/movies`,
+      lastModified: currentDate,
+      changeFrequency: "daily" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/tv`,
+      lastModified: currentDate,
+      changeFrequency: "daily" as const,
+      priority: 0.9,
+    },
     {
       url: `${siteUrl}/search`,
       lastModified: currentDate,

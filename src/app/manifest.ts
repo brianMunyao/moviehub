@@ -25,16 +25,16 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     categories: ["entertainment", "movies", "tv"],
     shortcuts: [
-      //   {
-      //     name: "Movies",
-      //     url: "/movies",
-      //     description: "Browse movies",
-      //   },
-      //   {
-      //     name: "TV Shows",
-      //     url: "/tv",
-      //     description: "Browse TV shows",
-      //   },
+      {
+        name: "Movies",
+        url: "/movies",
+        description: "Browse movies",
+      },
+      {
+        name: "TV Shows",
+        url: "/tv",
+        description: "Browse TV shows",
+      },
       {
         name: "Search",
         url: "/search",
