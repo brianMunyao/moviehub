@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { Star, Film, Tv, Bookmark } from "lucide-react";
@@ -15,19 +17,20 @@ type Props = {
 
 const TvDetail = ({ tv }: Props) => {
   return (
-    <div className="h-[90vh] w-full bg-black text-white">
-      <div className="relative w-full h-[90vh]">
+    <div className="relative w-full min-h-screen bg-black text-white">
+      <div className="absolute inset-0">
         <Image
           src={buildImageUrl(tv.backdrop_path, "original") || ""}
           alt={tv.name}
           fill
           className="object-cover brightness-50"
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative px-4 flex flex-col md:flex-row gap-8 bottom-10 -translate-y-full">
-        <div className="relative w-52 h-72 shrink-0">
+      <div className="relative max-w-7xl mx-auto px-4 pt-32 pb-12 flex flex-col md:flex-row gap-8">
+        <div className="relative w-52 h-72 shrink-0 mx-auto md:mx-0">
           <Image
             src={buildImageUrl(tv.poster_path) || ""}
             alt={tv.name}
@@ -38,7 +41,7 @@ const TvDetail = ({ tv }: Props) => {
 
         <div className="flex-1 space-y-4">
           <h1 className="text-3xl md:text-5xl font-bold">{tv.name}</h1>
-          <p className="text-lg italic text-gray-300">{tv.tagline}</p>
+          {tv.tagline && <p className="text-lg italic text-gray-300">{tv.tagline}</p>}
 
           <div className="flex flex-wrap items-center gap-2 text-sm">
             <div className="border flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-sm text-gray-100">
@@ -65,9 +68,9 @@ const TvDetail = ({ tv }: Props) => {
             </div>
           </div>
 
-          <p className="text-gray-200 leading-relaxed max-w-[80%]">{tv.overview}</p>
+          <p className="text-gray-200 leading-relaxed max-w-3xl">{tv.overview}</p>
 
-          <div className="flex gap-3 justify-center md:justify-start">
+          <div className="flex gap-3 justify-start flex-wrap">
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <FavoriteButton mediaItem={normalizeTV(tv as any)} />
 
