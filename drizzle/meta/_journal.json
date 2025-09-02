@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1755856905221,
-      "tag": "0000_initial-setup",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1756035807981,
-      "tag": "0001_username_to_email",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1756753013923,
-      "tag": "0002_favorites_and_watchlists",
+      "when": 1756810439000,
+      "tag": "0000_initial_setup",
       "breakpoints": true
     }
   ]
